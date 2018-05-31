@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="IDeviceConfig.fs" />
+    <Compile Include="ClockApp.fs" />
+    <Compile Include="CounterApp.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="4.3.3" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
+    <PackageReference Include="Elmish.XamarinForms" Version="0.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="System.ValueTuple" Version="4.5.0-rc1" />
+  </ItemGroup>
+</Project>
