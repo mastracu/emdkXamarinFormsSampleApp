@@ -21,7 +21,7 @@
     <FSharpTargetsPath>C:\Users\vhrd47\AppData\Local\Microsoft\VisualStudio\15.0_a4d2c22b\Extensions\123yc0rd.3on\Microsoft.FSharp.targets</FSharpTargetsPath>
     <SelectedDevice>Android_Accelerated_x86</SelectedDevice>
     <DefaultDevice>Android_Accelerated_x86</DefaultDevice>
-    <Name>dsymeHello.Droid</Name>
+    <Name>FsEmdkXamarinForms.Droid</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
