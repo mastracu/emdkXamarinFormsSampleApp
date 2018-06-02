@@ -1,8 +1,8 @@
-﻿namespace dsymeHello.Droid.Properties
+﻿namespace FsEmdkXamarinForms.Droid.Properties
 open System.Reflection
 open System.Runtime.CompilerServices
 
-[<assembly: AssemblyTitle("dsymeHello.Droid")>]
+[<assembly: AssemblyTitle("FsEmdkXamarinForms.Droid")>]
 [<assembly: AssemblyDescription("")>]
 [<assembly: AssemblyConfiguration("")>]
 [<assembly: AssemblyCompany("")>]

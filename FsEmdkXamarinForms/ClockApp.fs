@@ -1,11 +1,9 @@
 namespace clockApp
 
-// Copyright 2018 Elmish.XamarinForms contributors. See LICENSE.md for license.
-
-open System.Diagnostics
 open Elmish.XamarinForms
 open Elmish.XamarinForms.DynamicViews
 open Xamarin.Forms
+open MBrace.FsPickler.Json
 
 module App = 
     type Model = 
@@ -76,4 +74,21 @@ type ClockApp () as app =
         |> Program.withConsoleTrace
         |> Program.withDynamicView app
         |> Program.run
+    
+    let modelId = "model"
+
+    override __.OnSleep() = 
+        app.Properties.[modelId] <- FsPickler.CreateJsonSerializer().PickleToString(runner.CurrentModel)
+
+    override __.OnResume() = 
+        try 
+            match app.Properties.TryGetValue modelId with
+            | true, (:? string as json) -> 
+                runner.SetCurrentModel(FsPickler.CreateJsonSerializer().UnPickleOfString(json), Cmd.none)
+            | _ -> ()
+        with ex -> 
+            program.onError("Error while restoring model found in app.Properties", ex)
+
+    override this.OnStart() = this.OnResume()
+
 
