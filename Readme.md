@@ -7,5 +7,4 @@ Convertion into F# of Billy Hecox sample app  https://github.com/Zebra/examples-
 * Data Model Serialzation via FsPickler Json Library https://mbraceproject.github.io/FsPickler/
 * .Net Standard 2.0
 
-END USER LICENSE AGREEMENT (UNRESTRICTED SOFTWARE)
 
