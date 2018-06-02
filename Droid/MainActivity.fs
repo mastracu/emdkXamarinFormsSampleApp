@@ -5,11 +5,7 @@ open System.IO
 open System.Xml
 
 open Android.App
-open Android.Content
 open Android.Content.PM
-open Android.Runtime
-open Android.Views
-open Android.Widget
 open Android.OS
 open Xamarin.Forms
 open Xamarin.Forms.Platform.Android

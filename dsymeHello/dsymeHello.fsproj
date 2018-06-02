@@ -12,8 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Core" Version="4.3.3" />
+    <PackageReference Include="FsPickler" Version="5.2.0" />
+    <PackageReference Include="FsPickler.Json" Version="5.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
-    <PackageReference Include="Elmish.XamarinForms" Version="0.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Elmish.XamarinForms">
+      <HintPath>..\..\Elmish.XamarinForms-master\Elmish.XamarinForms\bin\Debug\netstandard2.0\Elmish.XamarinForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="System.ValueTuple" Version="4.5.0-rc1" />

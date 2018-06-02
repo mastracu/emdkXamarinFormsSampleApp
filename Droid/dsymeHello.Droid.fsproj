@@ -19,7 +19,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <FSharpTargetsPath>C:\Users\vhrd47\AppData\Local\Microsoft\VisualStudio\15.0_a4d2c22b\Extensions\123yc0rd.3on\Microsoft.FSharp.targets</FSharpTargetsPath>
-    <SelectedDevice>Zebra Technologies TC20</SelectedDevice>
+    <SelectedDevice>Android_Accelerated_x86</SelectedDevice>
     <DefaultDevice>Android_Accelerated_x86</DefaultDevice>
     <Name>dsymeHello.Droid</Name>
   </PropertyGroup>
@@ -85,10 +85,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FsPickler">
+      <HintPath>..\packages\FsPickler.5.2\lib\netstandard2.0\FsPickler.dll</HintPath>
+    </Reference>
+    <Reference Include="FsPickler.Json">
+      <HintPath>..\packages\FsPickler.Json.5.2\lib\netstandard2.0\FsPickler.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Symbol.XamarinEMDK">
       <HintPath>..\packages\Symbol.XamarinEMDK.2.7.0.76-rc\lib\MonoAndroid\Symbol.XamarinEMDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -171,9 +182,6 @@
     </Reference>
     <Reference Include="Xamarin.Android.FSharp.ResourceProvider.Runtime">
       <HintPath>..\packages\Xamarin.Android.FSharp.ResourceProvider.1.0.0.25\lib\Xamarin.Android.FSharp.ResourceProvider.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmish.XamarinForms">
-      <HintPath>..\packages\Elmish.XamarinForms.0.4.4\lib\netstandard2.0\Elmish.XamarinForms.dll</HintPath>
     </Reference>
     <ProjectReference Include="../dsymeHello/dsymeHello.fsproj">
       <Project>{5B462A0B-64AF-4850-AB27-59909D655FA8}</Project>
