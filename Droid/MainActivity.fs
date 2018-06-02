@@ -1,4 +1,4 @@
-﻿namespace dsymeHello.Droid
+﻿namespace FsEmdkXamarinForms.Droid
 
 open System
 open System.IO
@@ -11,9 +11,9 @@ open Xamarin.Forms
 open Xamarin.Forms.Platform.Android
 open Symbol.XamarinEMDK
 
-type Resources = dsymeHello.Droid.Resource
+type Resources = FsEmdkXamarinForms.Droid.Resource
 
-[<Activity (Label = "dsymeHello.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = (ConfigChanges.ScreenSize ||| ConfigChanges.Orientation))>]
+[<Activity (Label = "SetClock", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = (ConfigChanges.ScreenSize ||| ConfigChanges.Orientation))>]
 type MainActivity() =
     inherit FormsAppCompatActivity()
 
