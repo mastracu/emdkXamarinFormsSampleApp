@@ -24,23 +24,23 @@ module App =
     //TODO: set InitModel based on current timing
     let initModel = { Time = "01:30:30"; Date = "2018-05-27"; TimeZone = "GMT-5"; Status = "Default Settins applied" }
 
-    let init () = initModel, Cmd.none
+    let init () = initModel
 
     let update msg model =
         match msg with
         | SetClock ->
            let deviceConfig = DependencyService.Get<IDeviceConfig.IDeviceConfig>()
            deviceConfig.SetClock(model.TimeZone, model.Date, model.Time)
-           { model with Status = "SetClock submitted to MX" }, Cmd.none
+           { model with Status = "SetClock submitted to MX" }
         | StatusUpdate str ->
-           { model with Status = str }, Cmd.none        
+           { model with Status = str }        
         | TimeUpdate str ->
-           { model with Time = str }, Cmd.none        
+           { model with Time = str }        
         | DateUpdate str ->
-           { model with Date = str }, Cmd.none        
+           { model with Date = str }        
         | TimeZoneUpdate str ->
-           { model with TimeZone = str }, Cmd.none        
-        | Reset -> initModel, Cmd.none
+           { model with TimeZone = str }        
+        | Reset -> initModel
 
     let view (model: Model) dispatch =
         Xaml.ContentPage(
@@ -67,7 +67,7 @@ type ClockApp () as app =
         let statusUpdateAction dispatch = new System.Action<ClockApp,string>(fun app arg -> dispatch (StatusUpdate arg) )
         MessagingCenter.Subscribe<ClockApp, string> (Xamarin.Forms.Application.Current, "Status", statusUpdateAction dispatch)
 
-    let program = Program.mkProgram init update view
+    let program = Program.mkSimple init update view
     let runner = 
         program
         |> Program.withSubscription (fun _ -> Cmd.ofSub emdkStatus)

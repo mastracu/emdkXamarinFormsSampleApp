@@ -88,6 +88,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Elmish.XamarinForms">
+      <HintPath>..\packages\Elmish.XamarinForms.0.5.0\lib\netstandard2.0\Elmish.XamarinForms.dll</HintPath>
+    </Reference>
     <Reference Include="FsPickler">
       <HintPath>..\packages\FsPickler.5.2\lib\netstandard2.0\FsPickler.dll</HintPath>
     </Reference>
