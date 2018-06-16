@@ -50,9 +50,10 @@ type MainActivity() =
 
     member this.EmdkProcessProfile (profileName, p2:string[]) =
         let asyncProcessJobAndCheck (pm:ProfileManager) =
-            use results = pm.ProcessProfileAsync (profileName, ProfileManager.PROFILE_FLAG.Set, p2)
-            do notification.Trigger ("ProcessProfileAsync" + if (results.StatusCode = EMDKResults.STATUS_CODE.Processing) then "OK" else  "KO")
-        profileManager |> Option.map asyncProcessJobAndCheck
+            async { let! results = async {  return pm.ProcessProfile (profileName, ProfileManager.PROFILE_FLAG.Set, p2) }
+                    let success = resultIsOk (results)
+                    do notification.Trigger (if success then "Profile succesfully applied" else "Profile application failed") }
+        profileManager |> Option.map asyncProcessJobAndCheck |> Option.map Async.Start
 
     member this.Release () =
         do emdkManager |> Option.map (fun (em:EMDKManager) -> em.Release()) |> ignore
@@ -70,14 +71,10 @@ type MainActivity() =
             do emdkManager <- Some emdkManagerInstance
             try 
                 let pm = emdkManagerInstance.GetInstance (EMDKManager.FEATURE_TYPE.Profile) :?> ProfileManager
-                do pm.Data.Subscribe this.ProfileManagerData |> ignore
                 do profileManager <- Some pm       
-                do notification.Trigger "GetInstance success"
-            with | _ -> notification.Trigger "GetInstance failed"
+                do notification.Trigger "GetInstance ProfileManager: success"
+            with | _ -> notification.Trigger "GetInstance ProfileManager: failed"
    
-    member this.ProfileManagerData (e:ProfileManager.DataEventArgs) =
-        notification.Trigger (if resultIsOk (e.P0.Result) then "Profile succesfully applied" else "Profile application failed")
-
     override this.OnCreate (bundle: Bundle) =
         FormsAppCompatActivity.TabLayoutResource <- Resources.Layout.Tabbar
         FormsAppCompatActivity.ToolbarResource <- Resources.Layout.Toolbar
