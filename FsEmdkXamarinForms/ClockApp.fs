@@ -43,22 +43,23 @@ module App =
         | Reset -> initModel
 
     let view (model: Model) dispatch =
-        Xaml.ContentPage(
-          content=Xaml.StackLayout(padding=20.0, spacing = 5.0,
+        View.ContentPage(
+          content=View.StackLayout(padding=20.0, spacing = 5.0,
                   children=[
-                    Xaml.Label(text= "Enter Time:", fontSize = "Large")
-                    Xaml.Entry(text= model.Time, fontSize = "Large", textChanged=fixf(fun text -> dispatch (TimeUpdate text.NewTextValue)))
-                    Xaml.Label(text= "Enter Date:", fontSize = "Large")
-                    Xaml.Entry(text= model.Date, fontSize = "Large", textChanged=fixf(fun text -> dispatch (DateUpdate text.NewTextValue)))
-                    Xaml.Label(text= "Enter TimeZone:", fontSize = "Large")
-                    Xaml.Entry(text= model.TimeZone, fontSize = "Large", textChanged=fixf(fun text -> dispatch (TimeZoneUpdate text.NewTextValue)))
-                    Xaml.Button(text="Reset", command=fixf(fun () -> dispatch Reset), canExecute = (model.Time <> initModel.Time || model.Date <> initModel.Date || model.TimeZone <> initModel.TimeZone))
-                    Xaml.Button(text="Submit Profile", command= fixf (fun () -> dispatch SetClock))
-                    Xaml.Label(text=sprintf "Status: %s" model.Status) 
+                    View.Label(text= "Enter Time:", fontSize = "Large")
+                    View.Entry(text= model.Time, fontSize = "Large", textChanged=fixf(fun text -> dispatch (TimeUpdate text.NewTextValue)))
+                    View.Label(text= "Enter Date:", fontSize = "Large")
+                    View.Entry(text= model.Date, fontSize = "Large", textChanged=fixf(fun text -> dispatch (DateUpdate text.NewTextValue)))
+                    View.Label(text= "Enter TimeZone:", fontSize = "Large")
+                    View.Entry(text= model.TimeZone, fontSize = "Large", textChanged=fixf(fun text -> dispatch (TimeZoneUpdate text.NewTextValue)))
+                    View.Button(text="Reset", command=fixf(fun () -> dispatch Reset), canExecute = (model.Time <> initModel.Time || model.Date <> initModel.Date || model.TimeZone <> initModel.TimeZone))
+                    View.Button(text="Submit Profile", command= fixf (fun () -> dispatch SetClock))
+                    View.Label(text=sprintf "Status: %s" model.Status) 
                   ]))
 
-open App
+    let program = Program.mkSimple init update view
 
+open App
 
 type ClockApp () as app = 
     inherit Application ()
@@ -67,13 +68,11 @@ type ClockApp () as app =
         let statusUpdateAction dispatch = new System.Action<ClockApp,string>(fun app arg -> dispatch (StatusUpdate arg) )
         MessagingCenter.Subscribe<ClockApp, string> (Xamarin.Forms.Application.Current, "Status", statusUpdateAction dispatch)
 
-    let program = Program.mkSimple init update view
     let runner = 
         program
         |> Program.withSubscription (fun _ -> Cmd.ofSub emdkStatus)
         |> Program.withConsoleTrace
-        |> Program.withDynamicView app
-        |> Program.run
+        |> Program.runWithDynamicView app
     
     let modelId = "model"
 

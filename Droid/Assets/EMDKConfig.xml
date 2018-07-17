@@ -4,7 +4,7 @@
 </characteristic>
 <characteristic type="Profile">
 <parm name="ProfileName" value="Profile1"/>
-<parm name="ModifiedDate" value="2017-05-01 15:18:27"/>
+<parm name="ModifiedDate" value="2018-07-14 16:28:23"/>
 <parm name="TargetSystemVersion" value="6.2"/>
 <characteristic type="Clock" version="6.0">
 <parm name="emdk_name" value="Clock-1"/>
