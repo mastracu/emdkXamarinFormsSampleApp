@@ -1,7 +1,7 @@
 namespace clockApp
 
-open Elmish.XamarinForms
-open Elmish.XamarinForms.DynamicViews
+open Fabulous.Core
+open Fabulous.DynamicViews
 open Xamarin.Forms
 open MBrace.FsPickler.Json
 
@@ -76,10 +76,10 @@ type ClockApp () as app =
     
     let modelId = "model"
 
-    override __.OnSleep() = 
+    override this.OnSleep() = 
         app.Properties.[modelId] <- FsPickler.CreateJsonSerializer().PickleToString(runner.CurrentModel)
 
-    override __.OnResume() = 
+    override this.OnResume() = 
         try 
             match app.Properties.TryGetValue modelId with
             | true, (:? string as json) -> 
